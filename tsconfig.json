@@ -1,0 +1,69 @@
+{
+  "ts-node": {
+    "files": true
+  },
+  "compilerOptions": {
+    "lib": [
+      "es2022"
+    ],
+    "module": "Node16",
+    "moduleResolution": "node16",
+    "declaration": false,
+    "esModuleInterop": true,
+    "types": [
+      "reflect-metadata",
+      "node",
+    ],
+    "removeComments": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "allowUmdGlobalAccess": true,
+    "allowJs": true,
+    "target": "es2022",
+    "sourceMap": true,
+    "sourceRoot": "",
+    "outDir": "./dist",
+    "incremental": true,
+    "resolveJsonModule": true,
+    "baseUrl": "./src",
+    "rootDir": "./",
+    "skipLibCheck": true,
+    "strict": true,
+    "strictPropertyInitialization": false,
+    "plugins": [
+      {
+        "transform": "typescript-transform-paths"
+      },
+      {
+        "transform": "typescript-transform-paths",
+        "afterDeclarations": true
+      }
+    ],
+    "paths": {
+      "@models/*": [
+        "lib/db/models/*"
+      ],
+      "@modules/*": [
+        "modules/*"
+      ],
+      "@lib/*": [
+        "lib/*"
+      ],
+      "@app/*": [
+        "./*"
+      ],
+    }
+  },
+  "include": [
+    "./src",
+    "./test",
+    "./database",
+  ],
+  "exclude": [
+    "node_modules",
+    "./node_modules",
+    "./node_modules/*",
+    "**/.*/"
+  ]
+}

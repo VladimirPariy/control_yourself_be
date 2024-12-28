@@ -1,8 +1,16 @@
 import {Router} from 'express';
-import {Container} from 'inversify';
+import {AuthRouter} from './auth/auth.router';
+import {inject} from 'inversify';
+import {provide} from '@lib/utils/ioc/injectable-decorator';
 
-export function rootRouter(_: Container): Router {
-  const router = Router();
+@provide()
+export class RootRouter {
+  private readonly _router = Router();
 
-  return router;
+  @inject(AuthRouter) private readonly _authRouter: AuthRouter
+
+  public execute() {
+    this._router.use('/auth', this._authRouter.publicRoutes());
+    return this._router;
+  }
 }

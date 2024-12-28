@@ -1,7 +1,7 @@
 import cors from 'cors';
 import 'express-async-errors';
 import {HttpError} from '@app/lib/errors/http-error.js';
-import {rootRouter} from '@app/routes/root.router.js';
+import {RootRouter} from '@app/routes/root.router.js';
 import {Container} from 'inversify';
 import {errorMiddleware} from '@lib/middlewares/error.middleware.js';
 import {injectTraceID} from '@lib/middlewares/trace.middleware.js';
@@ -40,7 +40,9 @@ export async function createServer(ioc: Container): Promise<Application> {
     res.json({message: 'OK'});
   });
 
-  app.use('/api', rootRouter(ioc));
+
+  const rootRouter = ioc.get(RootRouter)
+  app.use('/api', rootRouter.execute());
 
   app.all('**', (req) => {
     throw new HttpError(404, `[control_yourself] Route is not found`, {

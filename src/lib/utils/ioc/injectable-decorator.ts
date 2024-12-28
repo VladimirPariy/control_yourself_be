@@ -19,6 +19,7 @@ export function provide(): <T extends abstract new (...args: any) => unknown>(ta
       try {
         decorate(injectable(), target);
       } catch (e) {
+        prettyLog.error(`[${new Date().toISOString()}] ${e}`);
         throw new Error('Cannot apply @provide decorator multiple times for ' + target.name);
       }
     }

@@ -1,5 +1,4 @@
 import {NextFunction, Response, Request} from 'express';
-
 import {getLogger} from '@app/lib/utils/logger.js';
 import {generateTraceID} from '@lib/utils/errors.js';
 import {extractErrorDetails} from '@lib/utils/exceptions.js';

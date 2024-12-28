@@ -1,7 +1,7 @@
 import {HttpError} from '@lib/errors/http-error.js';
 
 import {UnauthorizedError} from 'express-jwt';
-import {ValidationError} from 'yup';
+// import {ValidationError} from 'yup';
 
 type ExceptionDetails = {
   httpStatus: number;
@@ -26,11 +26,13 @@ export function extractErrorDetails(error: Error): ExceptionDetails {
       ...error.getInternalPayload(),
       original: error.getOriginalError(),
     };
-  } else if (error instanceof ValidationError) {
-    status = 400;
-    message = error.message;
-    handled = true;
-  } else if (error instanceof UnauthorizedError) {
+  }
+  // else if (error instanceof ValidationError) {
+  //   status = 400;
+  //   message = error.message;
+  //   handled = true;
+  // }
+  else if (error instanceof UnauthorizedError) {
     status = 401;
     message = error.message;
     handled = true;

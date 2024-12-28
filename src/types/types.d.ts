@@ -24,6 +24,7 @@ declare global {
 }
 
 declare global {
+  // eslint-disable-next-line no-var
   var ioc: Container;
   namespace Express {
     export interface Request {

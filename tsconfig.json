@@ -6,8 +6,7 @@
     "lib": [
       "es2022"
     ],
-    "module": "Node16",
-    "moduleResolution": "node16",
+    "module": "CommonJS",
     "declaration": false,
     "esModuleInterop": true,
     "types": [
@@ -58,7 +57,6 @@
   "include": [
     "./src",
     "./test",
-    "./database",
   ],
   "exclude": [
     "node_modules",

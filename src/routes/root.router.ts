@@ -7,7 +7,7 @@ import {provide} from '@lib/utils/ioc/injectable-decorator';
 export class RootRouter {
   private readonly _router = Router();
 
-  @inject(AuthRouter) private readonly _authRouter: AuthRouter
+  @inject(AuthRouter) private readonly _authRouter: AuthRouter;
 
   public execute() {
     this._router.use('/auth', this._authRouter.publicRoutes());

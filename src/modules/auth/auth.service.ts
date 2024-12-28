@@ -5,6 +5,6 @@ import {inject} from 'inversify';
 
 @provide()
 export class AuthService {
-  @inject(UserService) private readonly _userService: UserService
-  @inject(UserRepository) private readonly _userRepository: UserRepository
+  @inject(UserService) private readonly _userService: UserService;
+  @inject(UserRepository) private readonly _userRepository: UserRepository;
 }

@@ -40,8 +40,7 @@ export async function createServer(ioc: Container): Promise<Application> {
     res.json({message: 'OK'});
   });
 
-
-  const rootRouter = ioc.get(RootRouter)
+  const rootRouter = ioc.get(RootRouter);
   app.use('/api', rootRouter.execute());
 
   app.all('**', (req) => {

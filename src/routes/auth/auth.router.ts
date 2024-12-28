@@ -5,13 +5,13 @@ import {provide} from '@lib/utils/ioc/injectable-decorator';
 
 @provide()
 export class AuthRouter {
-  private readonly _router: Router = Router({mergeParams: true})
+  private readonly _router: Router = Router({mergeParams: true});
 
-  @inject(AuthController) private readonly _authController: AuthController
+  @inject(AuthController) private readonly _authController: AuthController;
 
   public publicRoutes() {
     this._router.get('/signup', this._authController.signup);
 
-    return this._router
+    return this._router;
   }
 }

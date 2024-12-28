@@ -9,10 +9,11 @@
     "build": "npx tsc --build tsconfig.json",
     "cmd": "node ./dist/cli/cli.entrypoint.js",
     "start": "node ./dist/entrypoint.js",
+    "dev": "tsx watch src/entrypoint.ts",
+    "types": "pnpm exec tsc --noEmit --project tsconfig.json",
     "lint": "eslint src --max-warnings 0",
     "pretty": "prettier --log-level warn --cache --write src",
-    "dev": "tsx watch src/entrypoint.ts",
-    "precommit": "npx tsc && npm run pretty && npm run lint"
+    "prepare": "husky"
   },
   "keywords": [],
   "author": "",
@@ -56,6 +57,8 @@
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.2.1",
     "globals": "^15.14.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.3.0",
     "prettier": "^3.4.2",
     "ts-node": "^10.9.2",
     "typescript": "^5.7.2",

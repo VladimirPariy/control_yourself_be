@@ -1,0 +1,5 @@
+'*.{ts,tsx,js,jsx,cjs,mjs}': 
+  - 'eslint --cache --cache-location ./node_modules/.cache/.eslintcache {src,test}/**/*.ts --fix'
+  - 'prettier --log-level warn --cache --write'
+'*.{json,yml,scss,css}': 
+  - 'prettier --log-level warn --cache --write'

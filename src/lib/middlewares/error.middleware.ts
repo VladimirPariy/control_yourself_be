@@ -1,7 +1,7 @@
 import {NextFunction, Response, Request} from 'express';
-import {getLogger} from '@app/lib/utils/logger.js';
-import {generateTraceID} from '@lib/utils/errors.js';
-import {extractErrorDetails} from '@lib/utils/exceptions.js';
+import {getLogger} from '@app/lib/utils/logger';
+import {generateTraceID} from '@lib/utils/errors';
+import {extractErrorDetails} from '@lib/utils/exceptions';
 
 export const errorMiddleware = (err: Error, req: Request, res: Response, _: NextFunction): Response<unknown> => {
   const {handled, stack, additionalInfo, httpStatus, safeMessage, originalMessage} = extractErrorDetails(err);

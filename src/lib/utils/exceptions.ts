@@ -1,4 +1,4 @@
-import {HttpError} from '@lib/errors/http-error.js';
+import {HttpError} from '@lib/errors/http-error';
 
 import {UnauthorizedError} from 'express-jwt';
 // import {ValidationError} from 'yup';

@@ -1,10 +1,10 @@
 import cors from 'cors';
 import 'express-async-errors';
-import {HttpError} from '@app/lib/errors/http-error.js';
-import {RootRouter} from '@app/routes/root.router.js';
+import {HttpError} from '@app/lib/errors/http-error';
+import {RootRouter} from '@app/routes/root.router';
 import {Container} from 'inversify';
-import {errorMiddleware} from '@lib/middlewares/error.middleware.js';
-import {injectTraceID} from '@lib/middlewares/trace.middleware.js';
+import {errorMiddleware} from '@lib/middlewares/error.middleware';
+import {injectTraceID} from '@lib/middlewares/trace.middleware';
 import {Application} from 'express';
 import express from 'express';
 

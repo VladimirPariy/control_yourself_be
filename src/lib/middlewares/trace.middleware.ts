@@ -1,4 +1,4 @@
-import {generateTraceID} from '@lib/utils/errors.js';
+import {generateTraceID} from '@lib/utils/errors';
 import {NextFunction, Response, Request} from 'express';
 
 export function injectTraceID() {

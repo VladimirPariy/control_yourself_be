@@ -4,9 +4,9 @@ import {
   interfaces as inversifyInterfaces,
   METADATA_KEY as INVERSIFY_METADATA_KEY,
 } from 'inversify';
-import {METADATA_KEY} from './constants.js';
-import {TProvide} from './types.js';
-import {prettyLog} from '@lib/utils/logger.js';
+import {METADATA_KEY} from './constants';
+import {TProvide} from './types';
+import {prettyLog} from '@lib/utils/logger';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function provide(): <T extends abstract new (...args: any) => unknown>(target: T) => T {

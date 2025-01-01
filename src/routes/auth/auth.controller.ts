@@ -7,7 +7,12 @@ import {inject} from 'inversify';
 export class AuthController {
   @inject(AuthService) private readonly _authService: AuthService;
 
+  constructor() {
+    this.signup = this.signup.bind(this);
+  }
+
   public async signup(req: Request, res: Response) {
-    return res.status(200).send({message: 'OK'});
+    const user = await this._authService.signup();
+    res.send(user);
   }
 }

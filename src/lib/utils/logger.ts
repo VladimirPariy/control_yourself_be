@@ -1,4 +1,4 @@
-import {ApplicationType} from '@lib/constants/application.js';
+import {ApplicationType} from '@lib/constants/application';
 import chalk from 'chalk';
 import winston from 'winston';
 

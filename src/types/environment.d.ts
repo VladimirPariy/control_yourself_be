@@ -2,9 +2,7 @@ declare global {
   namespace NodeJS {
     interface ProcessEnv {
       SQL_CONNECTION_STRING: string;
-      DB_MIN_CONNECTIONS: string;
-      DB_MAX_CONNECTIONS: string;
-
+      APP_TYPE: ApplicationType;
       REDIS_HOST: string;
       REDIS_PORT: string;
       REDIS_DB: string;

@@ -1,17 +1,17 @@
 import dotenv from 'dotenv';
 import 'reflect-metadata';
 import {Application} from 'express';
-import {getLogger} from '@lib/utils/logger.js';
-import {constructIOC} from '@lib/ioc/ioc.builder.js';
-import {ApplicationType} from '@lib/constants/application.js';
-import {createServer} from '@app/server.js';
+import {getLogger} from '@lib/utils/logger';
+import {constructIOC} from '@lib/ioc/ioc.builder';
+import {ApplicationType} from '@lib/constants/application';
+import {createServer} from '@app/server';
 
 async function boot() {
   dotenv.config({path: process.env.APP_ENV_FILE_PATH || '.env'});
 
   const ioc = (global.ioc = constructIOC());
 
-  const appType: ApplicationType = (process.env.APP_TYPE || ApplicationType.API) as ApplicationType;
+  const appType: ApplicationType = process.env.APP_TYPE || ApplicationType.API;
   let _server: Application;
 
   switch (appType) {

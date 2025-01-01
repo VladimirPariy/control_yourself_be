@@ -1,67 +1,39 @@
 {
   "ts-node": {
-    "files": true
+    "files": true,
+    "require": ["tsconfig-paths/register"]
   },
   "compilerOptions": {
-    "lib": [
-      "es2022"
-    ],
+    "lib": ["es2022"],
     "module": "CommonJS",
+    "moduleResolution": "node",
     "declaration": false,
     "esModuleInterop": true,
-    "types": [
-      "reflect-metadata",
-      "node",
-    ],
+    "types": ["reflect-metadata", "node"],
     "removeComments": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "allowSyntheticDefaultImports": true,
     "allowUmdGlobalAccess": true,
     "allowJs": true,
-    "target": "es2022",
+    "target": "ES2022",
     "sourceMap": true,
     "sourceRoot": "",
     "outDir": "./dist",
     "incremental": true,
     "resolveJsonModule": true,
-    "baseUrl": "./src",
+    "baseUrl": "./",
     "rootDir": "./",
     "skipLibCheck": true,
     "strict": true,
     "strictPropertyInitialization": false,
-    "plugins": [
-      {
-        "transform": "typescript-transform-paths"
-      },
-      {
-        "transform": "typescript-transform-paths",
-        "afterDeclarations": true
-      }
-    ],
     "paths": {
-      "@models/*": [
-        "lib/db/models/*"
-      ],
-      "@modules/*": [
-        "modules/*"
-      ],
-      "@lib/*": [
-        "lib/*"
-      ],
-      "@app/*": [
-        "./*"
-      ],
+      "@models/*": ["src/lib/db/models/*"],
+      "@modules/*": ["src/modules/*"],
+      "@lib/*": ["src/lib/*"],
+      "@app/*": ["src/*"]
     }
   },
-  "include": [
-    "./src",
-    "./test",
-  ],
-  "exclude": [
-    "node_modules",
-    "./node_modules",
-    "./node_modules/*",
-    "**/.*/"
-  ]
+  "include": ["./src", "./test"],
+  "exclude": ["node_modules", "./node_modules", "./node_modules/*", "**/.*/"]
 }

@@ -18,7 +18,10 @@
     "allowJs": true,
     "target": "ES2022",
     "sourceMap": true,
-    "sourceRoot": "",
+    // Set `sourceRoot` to  "/" to strip the build path prefix
+    // from generated source code references.
+    // This improves issue grouping in Sentry.
+    "sourceRoot": "/",
     "outDir": "./dist",
     "incremental": true,
     "resolveJsonModule": true,
@@ -32,8 +35,9 @@
       "@modules/*": ["src/modules/*"],
       "@lib/*": ["src/lib/*"],
       "@app/*": ["src/*"]
-    }
+    },
+    "inlineSources": true
   },
   "include": ["./src", "./test"],
-  "exclude": ["node_modules", "./node_modules", "./node_modules/*", "**/.*/"]
+  "exclude": ["instrument.*", "node_modules", "./node_modules", "./node_modules/*", "**/.*/"]
 }

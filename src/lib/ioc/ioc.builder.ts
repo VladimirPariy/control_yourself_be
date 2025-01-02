@@ -1,8 +1,8 @@
 import {Container} from 'inversify';
-import {Redis} from 'ioredis';
-import {getRedisConnectionOptions} from '@lib/db/redis.client';
-import {buildProviderModule} from '@lib/utils/ioc/provider-module';
 import {PrismaClient} from '@prisma/client';
+import {Redis} from 'ioredis';
+import {buildProviderModule} from '@lib/utils/ioc/provider-module';
+import {getRedisConnectionOptions} from '@lib/db/redis.client';
 import {initPrismaClient} from '@lib/db/prisma.client';
 
 export function constructIOC(): Container {

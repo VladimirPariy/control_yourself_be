@@ -1,4 +1,4 @@
-import {Container, interfaces} from 'inversify';
+import type {Container, interfaces} from 'inversify';
 
 export function bindServicesToIoc(container: Container, services: interfaces.ServiceIdentifier<unknown>[]) {
   services.forEach((entity) => {

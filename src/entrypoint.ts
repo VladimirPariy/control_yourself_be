@@ -1,15 +1,15 @@
-import dotenv from 'dotenv';
 import 'reflect-metadata';
-import {Application} from 'express';
-import {getLogger} from '@lib/utils/logger';
-import {constructIOC} from '@lib/ioc/ioc.builder';
+import type {Application} from 'express';
 import {ApplicationType} from '@lib/constants/application';
+import {constructIOC} from '@lib/ioc/ioc.builder';
 import {createServer} from '@app/server';
+import dotenv from 'dotenv';
+import {getLogger} from '@lib/utils/logger';
 
 async function boot() {
   dotenv.config({path: process.env.APP_ENV_FILE_PATH || '.env'});
 
-  const ioc = (global.ioc = constructIOC());
+  global.ioc = constructIOC();
 
   const appType: ApplicationType = process.env.APP_TYPE || ApplicationType.API;
   let _server: Application;
@@ -17,7 +17,7 @@ async function boot() {
   switch (appType) {
     case ApplicationType.API:
     default:
-      _server = await createServer(ioc);
+      _server = await createServer();
   }
 
   const port = parseInt(process.env.PORT, 10) || 5000;

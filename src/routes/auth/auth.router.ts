@@ -1,6 +1,6 @@
+import {AuthController} from './auth.controller';
 import {Router} from 'express';
 import {inject} from 'inversify';
-import {AuthController} from './auth.controller';
 import {provide} from '@lib/utils/ioc/injectable-decorator';
 
 @provide()
@@ -10,7 +10,7 @@ export class AuthRouter {
   @inject(AuthController) private readonly _authController: AuthController;
 
   public publicRoutes() {
-    this._router.get('/signup', this._authController.signup);
+    this._router.post('/signup', this._authController.signup);
 
     return this._router;
   }

@@ -4,9 +4,21 @@ import winston from 'winston';
 
 let __logger: winston.Logger;
 
-const errorLogsConfig = {filename: 'errors.log', level: 'error', dirname: 'logs'};
-const infoLogsConfig = {filename: 'information.log', level: 'info', dirname: 'logs'};
-const warnLogsConfig = {filename: 'warnings.log', level: 'warn', dirname: 'logs'};
+const errorLogsConfig = {
+  dirname: 'logs',
+  filename: 'errors.log',
+  level: 'error',
+};
+const infoLogsConfig = {
+  dirname: 'logs',
+  filename: 'information.log',
+  level: 'info',
+};
+const warnLogsConfig = {
+  dirname: 'logs',
+  filename: 'warnings.log',
+  level: 'warn',
+};
 
 export function getLogger(): winston.Logger {
   if (!__logger) {
@@ -15,8 +27,8 @@ export function getLogger(): winston.Logger {
       kind: string;
       queue?: string;
     } = {
-      service: 'evrythink',
       kind: process.env.APP_TYPE || ApplicationType.API,
+      service: 'evrythink',
     };
 
     if (process.env.QUEUE_NAME) {
@@ -24,9 +36,9 @@ export function getLogger(): winston.Logger {
     }
 
     __logger = winston.createLogger({
-      level: process.env.LOG_LEVEL || 'info',
-      format: winston.format.combine(winston.format.timestamp(), winston.format.json()),
       defaultMeta: meta,
+      format: winston.format.combine(winston.format.timestamp(), winston.format.json()),
+      level: process.env.LOG_LEVEL || 'info',
       transports: [
         new winston.transports.Console(),
         new winston.transports.File(infoLogsConfig),

@@ -39,12 +39,12 @@ export function extractErrorDetails(error: Error): ExceptionDetails {
   }
 
   return {
-    httpStatus: status,
-    safeMessage: message,
-    originalMessage: error.message || message,
-    stack: error.stack,
-    handled,
     additionalInfo,
+    handled,
+    httpStatus: status,
     originalError: error,
+    originalMessage: error.message || message,
+    safeMessage: message,
+    stack: error.stack,
   };
 }

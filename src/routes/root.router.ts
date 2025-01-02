@@ -1,5 +1,5 @@
-import {Router} from 'express';
 import {AuthRouter} from './auth/auth.router';
+import {Router} from 'express';
 import {inject} from 'inversify';
 import {provide} from '@lib/utils/ioc/injectable-decorator';
 

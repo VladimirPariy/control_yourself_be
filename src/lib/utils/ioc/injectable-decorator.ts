@@ -1,11 +1,7 @@
-import {
-  decorate,
-  injectable,
-  interfaces as inversifyInterfaces,
-  METADATA_KEY as INVERSIFY_METADATA_KEY,
-} from 'inversify';
+import {METADATA_KEY as INVERSIFY_METADATA_KEY, decorate, injectable} from 'inversify';
 import {METADATA_KEY} from './constants';
-import {TProvide} from './types';
+import type {TProvide} from './types';
+import type {interfaces as inversifyInterfaces} from 'inversify';
 import {prettyLog} from '@lib/utils/logger';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any

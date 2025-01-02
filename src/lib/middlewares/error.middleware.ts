@@ -1,22 +1,22 @@
-import {NextFunction, Response, Request} from 'express';
-import {getLogger} from '@app/lib/utils/logger';
-import {generateTraceID} from '@lib/utils/errors';
+import type {NextFunction, Request, Response} from 'express';
 import {extractErrorDetails} from '@lib/utils/exceptions';
+import {generateTraceID} from '@lib/utils/errors';
+import {getLogger} from '@app/lib/utils/logger';
 
 export const errorMiddleware = (err: Error, req: Request, res: Response, _: NextFunction): Response<unknown> => {
   const {handled, stack, additionalInfo, httpStatus, safeMessage, originalMessage} = extractErrorDetails(err);
 
   const traceID = generateTraceID();
   getLogger().error(originalMessage, {
-    stack: handled ? undefined : stack,
-    traceID,
     http: {
-      url: req.url,
       method: req.method,
+      url: req.url,
     },
     info: {
       ...additionalInfo,
     },
+    stack: handled ? undefined : stack,
+    traceID,
     user: {
       ...req?.user,
     },

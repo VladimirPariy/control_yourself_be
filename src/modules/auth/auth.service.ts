@@ -1,21 +1,20 @@
-import {provide} from '@lib/utils/ioc/injectable-decorator';
+import {HttpError} from '@lib/errors/http-error';
+import type {SignupData} from '@app/routes/auth/auth.validation';
 import {UserRepository} from '@modules/user/user.repository';
-import {UserService} from '@modules/user/user.service';
-import {PrismaClient} from '@prisma/client';
 import {inject} from 'inversify';
-import {Redis} from 'ioredis';
+import {provide} from '@lib/utils/ioc/injectable-decorator';
 
 @provide()
 export class AuthService {
-  @inject(UserService) private readonly _userService: UserService;
   @inject(UserRepository) private readonly _userRepository: UserRepository;
-  @inject(Redis) private readonly _redis: Redis;
-  @inject(PrismaClient) private readonly _prisma: PrismaClient;
 
-  public async signup() {
-    const user = await this._redis.get('user');
-    const user1 = await this._prisma.user.findMany();
-    console.log(user1, user);
+  public async registerUser(signupData: SignupData) {
+    const user = await this._userRepository.getUserByEmail(signupData.email);
+
+    if (user) {
+      throw new HttpError(409, 'User already exists');
+    }
+
     return user;
   }
 }

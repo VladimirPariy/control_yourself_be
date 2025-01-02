@@ -1,6 +1,7 @@
-import {interfaces as inversifyInterfaces, ContainerModule} from 'inversify';
+import {ContainerModule} from 'inversify';
 import {METADATA_KEY} from './constants';
-import {TProvide} from './types';
+import type {TProvide} from './types';
+import type {interfaces as inversifyInterfaces} from 'inversify';
 
 export function buildProviderModule(): inversifyInterfaces.ContainerModule {
   return new ContainerModule((bind) => {

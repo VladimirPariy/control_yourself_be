@@ -6,22 +6,26 @@
   "exports": "./dist/entrypoint.js",
   "type": "commonjs",
   "scripts": {
-    "build": "pnpm exec tsc --build tsconfig.json && pnpm exec tsc-alias",
+    "build": "pnpm exec tsc --build tsconfig.json && pnpm exec tsc-alias && pnpm sentry:sourcemaps",
     "build:watch": "concurrently --kill-others \"pnpm exec tsc --watch\" \"pnpm exec tsc-alias --watch\"",
     "cmd": "node ./dist/src/cli/cli.entrypoint.js",
     "start": "node ./dist/src/entrypoint.js",
     "start:watch": "cross-env nodemon --signal SIGTERM --delay 1 --watch dist dist/src/entrypoint.js --trace-warnings --exec 'node ./dist/src/entrypoint.js'",
     "dev": "tsx watch src/entrypoint.ts",
     "types": "pnpm exec tsc --noEmit --project tsconfig.json",
-    "lint": "eslint src --max-warnings 0",
+    "lint": "eslint src --max-warnings 0 --fix",
     "pretty": "prettier --log-level warn --cache --write src",
-    "prepare": "husky"
+    "prepare": "husky",
+    "sentry:sourcemaps": "sentry-cli sourcemaps inject --org control-yourself --project node-express ./dist && sentry-cli sourcemaps upload --org control-yourself --project node-express ./dist"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@prisma/client": "6.1.0",
+    "@sentry/cli": "^2.40.0",
+    "@sentry/node": "^8.47.0",
+    "@sentry/profiling-node": "^8.47.0",
     "bcrypt": "~5.1.1",
     "bullmq": "~3.10.1",
     "chalk": "^4.1.2",
@@ -48,6 +52,7 @@
     "zod": "^3.24.1"
   },
   "devDependencies": {
+    "@eslint/eslintrc": "^3.2.0",
     "@eslint/js": "^9.17.0",
     "@types/bcrypt": "^5.0.2",
     "@types/cors": "^2.8.17",

@@ -1,4 +1,4 @@
-import {Decimal} from 'decimal.js';
+import type {Decimal} from 'decimal.js';
 
 export function toFixedD(number: Decimal, precision: number = 2): Decimal {
   return number

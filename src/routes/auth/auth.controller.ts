@@ -1,7 +1,8 @@
-import {provide} from '@lib/utils/ioc/injectable-decorator';
+import type {Request, Response} from 'express';
 import {AuthService} from '@modules/auth/auth.service';
-import {Request, Response} from 'express';
 import {inject} from 'inversify';
+import {provide} from '@lib/utils/ioc/injectable-decorator';
+import {signupSchema} from './auth.validation';
 
 @provide()
 export class AuthController {
@@ -12,7 +13,8 @@ export class AuthController {
   }
 
   public async signup(req: Request, res: Response) {
-    const user = await this._authService.signup();
+    const payload = await signupSchema.parseAsync(req.body);
+    const user = await this._authService.registerUser(payload);
     res.send(user);
   }
 }

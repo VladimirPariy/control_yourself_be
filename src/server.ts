@@ -1,14 +1,15 @@
-import cors from 'cors';
+import '../instrument.js';
 import 'express-async-errors';
+import * as Sentry from '@sentry/node';
+import type {Application} from 'express';
 import {HttpError} from '@app/lib/errors/http-error';
 import {RootRouter} from '@app/routes/root.router';
-import {Container} from 'inversify';
+import cors from 'cors';
 import {errorMiddleware} from '@lib/middlewares/error.middleware';
-import {injectTraceID} from '@lib/middlewares/trace.middleware';
-import {Application} from 'express';
 import express from 'express';
+import {injectTraceID} from '@lib/middlewares/trace.middleware';
 
-export async function createServer(ioc: Container): Promise<Application> {
+export async function createServer(): Promise<Application> {
   const app = express();
 
   app.use(
@@ -48,6 +49,8 @@ export async function createServer(ioc: Container): Promise<Application> {
       path: req.path,
     });
   });
+
+  Sentry.setupExpressErrorHandler(app);
 
   app.use(errorMiddleware);
 

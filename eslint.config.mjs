@@ -14,7 +14,7 @@ const compat = new FlatCompat({
 
 /** @type {import('eslint').Linter.Config[]} */
 export default [
-  // {files: ['./src/**/*.{js,mjs,cjs,ts}']},
+  {files: ['./src/**/*.{js,mjs,cjs,ts}']},
   ...compat.config({
     parser: '@typescript-eslint/parser',
     rules: {
